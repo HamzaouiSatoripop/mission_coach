@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.documentation import include_docs_urls
+
+from user_profile.routers import user_profile_router
+from training.routers import training_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('profile/', include(user_profile_router.urls)),
+    path('training/', include(training_router.urls)),
+    path('docs/', include_docs_urls(title='mission coach API'))
+
 ]
